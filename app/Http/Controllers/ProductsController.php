@@ -12,12 +12,12 @@ class ProductsController extends Controller
 {
 
     private $Repository;
-    private $CategoryRepository;
+    private $categoryRepository;
 
     public function __construct(ProductRepository $ProductRepository, CategoryRepository $CategoryRepository)
     {
         $this->repository = $ProductRepository;
-        $this->CategoryRepository = $CategoryRepository;
+        $this->categoryRepository = $CategoryRepository;
     }
 
     public function index()
@@ -26,13 +26,13 @@ class ProductsController extends Controller
         if ($products->total()==0)
         {
             session()->flash('message-info',$products->total().' registro(s) encontrado(s).');
-        }       
+        }
         return view('admin.products.index',compact('products'));
     }
 
     public function create()
     {
-         $categories = $this->CategoryRepository->lists();
+        $categories = $this->categoryRepository->all()->lists('name','id')->toArray();
         return view('admin.products.create',compact('categories'));
     }
 
@@ -58,8 +58,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = $this->repository->find($id);
-        $categories = $this->CategoryRepository->lists();
-        //array_unshift($categories,'Selecione');
+        $categories = $this->categoryRepository->all()->lists('name','id')->toArray();
         return view('admin.products.edit',compact('product','categories'));
     }
 

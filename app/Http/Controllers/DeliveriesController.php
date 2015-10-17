@@ -12,7 +12,7 @@ use Delivery\Repositories\ProductRepository;
 use Delivery\Http\Requests\CheckoutRequest;
 use Delivery\Services\OrderService;
 
-class CheckoutController extends Controller
+class DeliveriesController extends Controller
 {
     private $orderRepository;
     private $userRepository;
@@ -30,22 +30,19 @@ class CheckoutController extends Controller
     public function index()
     {
 
-     $client = $this->userRepository->find(\Auth::user()->id)->client->id;
-     $orders = $this->orderRepository->scopeQuery(function($query) use ($client){
-        return $query->where('client_id','=',$client)->orderBy('created_at','desc');
+     $deliveryman = $this->userRepository->find(\Auth::user()->id);
+      //dd($deliveryman);
+     $orders = $this->orderRepository->scopeQuery(function($query) use ($deliveryman){
+        return $query->where('user_delivery_man_id','=',$deliveryman->id);
     })->paginate();
-        // $categories = $this->repository->paginate(5);
-        // if ($categories->total()==0)
-        // {
-        //     session()->flash('message-info',$categories->total().' registro(s) encontrado(s).');
-        // }
-     return view('customer.orders.index',compact('orders'));
+
+     return view('delivery.orders.index',compact('orders'));
  }
 
  public function create()
  {
     $products = $this->productRepository->all(['price','name','id']);
-    return view('customer.orders.create',compact('products'));
+    return view('delivery.orders.create',compact('products'));
 }
 
 public function store(CheckoutRequest $request)
@@ -63,7 +60,7 @@ public function store(CheckoutRequest $request)
         // {
         //     session()->flash('message-success','Dados gravados com sucesso.');
         // }
-    return redirect()->route('customer.orders.index');
+    return redirect()->route('delivery.orders.index');
 }
 
 public function show($id)

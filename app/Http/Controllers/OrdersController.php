@@ -14,10 +14,14 @@ class OrdersController extends Controller
 {
 
     private $repository;
+    private $userRepository;
 
-    public function __construct(OrderRepository $OrderRepository)
+    public function __construct(
+        OrderRepository $OrderRepository,
+        UserRepository $UserRepository)
     {
         $this->repository = $OrderRepository;
+        $this->userRepository = $UserRepository;
     }
 
     public function index()
@@ -32,7 +36,9 @@ class OrdersController extends Controller
 
     public function create()
     {
-        return view('admin.orders.create');
+        $list_deliveryman = $this->userRepository->all()->where('role','deliveryman')->lists('name','id')->toArray();
+        $list_status= ['0'=>'Pendente', '1'=>'A caminho', '2'=>'Entregue','3'=>'Cancelado'];
+        return view('admin.orders.create',compact('list_status','list_deliveryman'));
     }
 
     public function store(OrderRequest $request)
@@ -54,13 +60,11 @@ class OrdersController extends Controller
 
     }
 
-    public function edit($id, UserRepository $user)
-    {
+    public function edit($id, UserRepository $user)    {
         $list_status= ['0'=>'Pendente', '1'=>'A caminho', '2'=>'Entregue','3'=>'Cancelado'];
-        $list_deliveryman = $user->getDeliveryMan();
+        $list_deliveryman = $this->userRepository->all()->where('role','deliveryman')->lists('name','id')->toArray();
         $order = $this->repository->find($id);
-       return view('admin.orders.edit',compact('order','list_status','list_deliveryman'));
-    }
+        return view('admin.orders.edit',compact('order','list_status','list_deliveryman'));    }
 
     public function update(OrderRequest $request, $id)
     {

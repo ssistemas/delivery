@@ -49,7 +49,7 @@
 							@elseif (auth()->user()->role=='client')
 								<li><a href="{{ route('customer.orders.index') }}">Meus pedidos</a></li>
 							@elseif (auth()->user()->role=='deliveryman')
-								<li><a href="{{ route('deliveryman.orders.index') }}">Minhas entregas</a></li>
+								<li><a href="{{ route('delivery.orders.index') }}">Minhas entregas</a></li>
 							@endif
 						@endif
 

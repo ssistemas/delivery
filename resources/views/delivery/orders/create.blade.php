@@ -2,10 +2,9 @@
 @section('content')
 <div class="container">
 	<h3>Novo Pedido</h3>
-	{!! Form::open(['route'=>'admin.orders.store','method'=>'POST','class'=>'form-horizontal']) !!}
+	{!! Form::open(['route'=>'customer.orders.store','method'=>'POST','class'=>'form-horizontal']) !!}
 
-	@include('admin.orders._form')
-
+	@include('customer.orders._form')
 
 	<div class="form-group">
 		<div class="col-md-12">

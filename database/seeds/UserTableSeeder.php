@@ -32,8 +32,13 @@ class UserTableSeeder extends Seeder
       $u->client()->save(factory(Client::class)->make());
     });
 
-     factory(Delivery\Models\User::class,5)->create([
+     factory(Delivery\Models\User::class)->create([
+      'email' => 'deliveryman@gmail.com',
       'password' => bcrypt(123456),
+      'role'=>'deliveryman',
+      ]);
+
+     factory(Delivery\Models\User::class,4)->create([
       'role'=>'deliveryman',
       ]);
    }

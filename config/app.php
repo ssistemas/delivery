@@ -142,6 +142,8 @@ return [
          */
         Illuminate\Html\HtmlServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +206,7 @@ return [
 
     'Html'      => Illuminate\Html\HtmlFacade::Class,
     'Form'      => Illuminate\Html\FormFacade::Class,
+    'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
     ],
 

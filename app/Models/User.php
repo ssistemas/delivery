@@ -27,6 +27,6 @@ CanResetPasswordContract
     public function client()
     {
         return  $this->hasOne(Client::class);
-    }   
+    }
 
 }

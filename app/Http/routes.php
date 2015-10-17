@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-	return redirect()->route('auth.login');
+	return view('welcome');
 });
 
 
@@ -81,6 +81,20 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 	});
 });
 
+Route::group(['middleware'=>'auth.checkrole:deliveryman','prefix' => 'delivery','as'=>'delivery.'], function () {
+	Route::group(['prefix' => 'orders','as'=>'orders.'], function () {
+		Route::get('',			 ['as'=>'index',    'uses'=> 'DeliveriesController@index']);
+		Route::post('',			 ['as'=>'store',	'uses'=> 'DeliveriesController@store']);
+		Route::get('create',	 ['as'=>'create',	'uses'=> 'DeliveriesController@create']);
+		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'DeliveriesController@destroy'])->where('id', '[0-9]+');
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'DeliveriesController@destroy'])->where('id', '[0-9]+');
+		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'DeliveriesController@show'])->where('id', '[0-9]+');
+		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'DeliveriesController@update'])->where('id', '[0-9]+');
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'DeliveriesController@edit'])->where('id', '[0-9]+');
+	});
+});
+
+
 Route::group(['middleware'=>'auth.checkrole:client','prefix' => 'customer','as'=>'customer.'], function () {
 	Route::group(['prefix' => 'orders','as'=>'orders.'], function () {
 		Route::get('',			 ['as'=>'index',    'uses'=> 'CheckoutController@index']);
@@ -94,3 +108,15 @@ Route::group(['middleware'=>'auth.checkrole:client','prefix' => 'customer','as'=
 	});
 });
 
+Route::post('oauth/access_token', function() {
+	return Response::json(Authorizer::issueAccessToken());
+});
+Route::group(['middleware'=>'oauth','prefix' => 'api', 'as'=>'api.'], function () {
+	Route::get('pedidos',function() {
+		return [
+		'id'=>'1',
+		'client'=>'Santiago',
+		'total'=>10,
+		];
+	});
+});

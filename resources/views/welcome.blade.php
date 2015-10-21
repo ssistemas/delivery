@@ -37,7 +37,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <div class="title">System Delivery - Laravel 5 
+            <div class="title">System Delivery - Laravel 5
                 <p>admin@gmail.com</p>
                 <p>client@gmail.com</p>
                 <p>deliveryman@gmail.com</p>

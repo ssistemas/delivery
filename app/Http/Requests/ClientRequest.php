@@ -24,16 +24,18 @@ class ClientRequest extends Request
     public function rules()
     {
         return [
-            //'name'          => 'required|max:100|min:5',
+            'phone'   =>'required|max:11|min:8',
+            'address' =>'required|max:100',
+            'city'    =>'required|max:50',
+            'state'   =>'required',
+            'zipcode' =>'required',
         ];
     }
 
     public function messages()
     {
-        return [       
-        // 'name.required' => 'O nome da categoria é obrigatório.',
-        // 'name.max'      => 'O nome da categoria deverá conter máximo de 100 caracteres.',
-        // 'name.min'      => 'O nome da categoria deverá conter no mínino 5 caracteres.',
+        return [
+
         ];
     }
 }

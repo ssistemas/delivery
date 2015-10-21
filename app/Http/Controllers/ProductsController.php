@@ -88,5 +88,5 @@ class ProductsController extends Controller
             session()->flash('message-success','Registro apagado com sucesso.');
         }
         return redirect()->route('admin.products.index');
-    }  
+    }
 }

@@ -11,7 +11,7 @@ Route::get('home',			['as'=>'home','uses'=>'HomeController@index']);
 Route::group(['prefix' => 'auth'], function () {
 	Route::get('login', 	['as'=>'auth.login', 	 'uses'=>'Auth\AuthController@getLogin']);
 	Route::post('login', 	['as'=>'auth.login', 	 'uses'=>'Auth\AuthController@postLogin']);
-	Route::get('logout', 	['as'=>'auth.logout', 	 'uses'=>'Auth\AuthController@getLogout']);	
+	Route::get('logout', 	['as'=>'auth.logout', 	 'uses'=>'Auth\AuthController@getLogout']);
 	Route::get('register', 	['as'=>'auth.register',  'uses'=>'Auth\AuthController@getRegister']);
 	Route::post('register', ['as'=>'auth.register',  'uses'=>'Auth\AuthController@postRegister']);
 });
@@ -30,10 +30,10 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 		Route::post('',			 ['as'=>'store',	'uses'=> 'CategoriesController@store']);
 		Route::get('create',	 ['as'=>'create',	'uses'=> 'CategoriesController@create']);
 		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'CategoriesController@destroy'])->where('id', '[0-9]+');
-		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'CategoriesController@destroy'])->where('id', '[0-9]+');	
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'CategoriesController@destroy'])->where('id', '[0-9]+');
 		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'CategoriesController@show'])->where('id', '[0-9]+');
 		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'CategoriesController@update'])->where('id', '[0-9]+');
-		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'CategoriesController@edit'])->where('id', '[0-9]+'); 
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'CategoriesController@edit'])->where('id', '[0-9]+');
 	});
 
 	Route::group(['prefix' => 'products','as'=>'products.'], function () {
@@ -41,10 +41,10 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 		Route::post('',			 ['as'=>'store',	'uses'=> 'ProductsController@store']);
 		Route::get('create',	 ['as'=>'create',	'uses'=> 'ProductsController@create']);
 		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'ProductsController@destroy'])->where('id', '[0-9]+');
-		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'ProductsController@destroy'])->where('id', '[0-9]+');	
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'ProductsController@destroy'])->where('id', '[0-9]+');
 		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'ProductsController@show'])->where('id', '[0-9]+');
 		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'ProductsController@update'])->where('id', '[0-9]+');
-		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'ProductsController@edit'])->where('id', '[0-9]+'); 
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'ProductsController@edit'])->where('id', '[0-9]+');
 	});
 
 	Route::group(['prefix' => 'clients','as'=>'clients.'], function () {
@@ -52,10 +52,10 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 		Route::post('',			 ['as'=>'store',	'uses'=> 'ClientsController@store']);
 		Route::get('create',	 ['as'=>'create',	'uses'=> 'ClientsController@create']);
 		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'ClientsController@destroy'])->where('id', '[0-9]+');
-		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'ClientsController@destroy'])->where('id', '[0-9]+');	
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'ClientsController@destroy'])->where('id', '[0-9]+');
 		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'ClientsController@show'])->where('id', '[0-9]+');
 		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'ClientsController@update'])->where('id', '[0-9]+');
-		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'ClientsController@edit'])->where('id', '[0-9]+'); 
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'ClientsController@edit'])->where('id', '[0-9]+');
 	});
 
 	Route::group(['prefix' => 'orders','as'=>'orders.'], function () {
@@ -63,10 +63,10 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 		Route::post('',			 ['as'=>'store',	'uses'=> 'OrdersController@store']);
 		Route::get('create',	 ['as'=>'create',	'uses'=> 'OrdersController@create']);
 		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'OrdersController@destroy'])->where('id', '[0-9]+');
-		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'OrdersController@destroy'])->where('id', '[0-9]+');	
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'OrdersController@destroy'])->where('id', '[0-9]+');
 		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'OrdersController@show'])->where('id', '[0-9]+');
 		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'OrdersController@update'])->where('id', '[0-9]+');
-		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'OrdersController@edit'])->where('id', '[0-9]+'); 
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'OrdersController@edit'])->where('id', '[0-9]+');
 	});
 
 	Route::group(['prefix' => 'cupoms','as'=>'cupoms.'], function () {
@@ -74,10 +74,10 @@ Route::group(['middleware'=>'auth.checkrole:admin','prefix' => 'admin', 'as'=>'a
 		Route::post('',			 ['as'=>'store',	'uses'=> 'CupomsController@store']);
 		Route::get('create',	 ['as'=>'create',	'uses'=> 'CupomsController@create']);
 		Route::get('{id}/delete',['as'=>'delete',	'uses'=> 'CupomsController@destroy'])->where('id', '[0-9]+');
-		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'CupomsController@destroy'])->where('id', '[0-9]+');	
+		Route::delete('{id}',	 ['as'=>'destroy',	'uses'=> 'CupomsController@destroy'])->where('id', '[0-9]+');
 		Route::get('{id}',		 ['as'=>'show',		'uses'=> 'CupomsController@show'])->where('id', '[0-9]+');
 		Route::put('{id}',		 ['as'=>'update',	'uses'=> 'CupomsController@update'])->where('id', '[0-9]+');
-		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'CupomsController@edit'])->where('id', '[0-9]+'); 
+		Route::get('{id}/edit',	 ['as'=>'edit',		'uses'=> 'CupomsController@edit'])->where('id', '[0-9]+');
 	});
 });
 

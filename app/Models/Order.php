@@ -10,11 +10,26 @@ class Order extends Model implements Transformable
 {
 	use TransformableTrait;
 
-	protected $fillable =['client_id','user_delivery_man_id','total','status'];
+	protected $fillable =['client_id','user_delivery_man_id','total','status','cupom_id'];
+
+
+	// public function transform()
+	// {
+	// 	return [
+	// 		'order' => $this->id,
+	// 		'items' =>$this->orderitems
+	// 	];
+	// }
+
+
+
+
+
+
+
 
 	public function cupom()
 	{
-		//return $this->hasOne(Cupom::class,'id','cupom_id');
 		return $this->belongsTo(Cupom::class);
 	}
 
@@ -32,16 +47,4 @@ class Order extends Model implements Transformable
 	{
 		return $this->belongsTo(User::class,'user_delivery_man_id','id');
 	}
-
-	// public function getTotalAttribute($value)
-	// {
-	// 	return number_format($value,2,",",".");
-	// }
-
-	// public function setTotalAttribute($value)
-	// {
-	// 	$this->attributes['total'] = floatval(str_replace(',','.',str_replace('.','',$value)));
-	// }
-
-
 }

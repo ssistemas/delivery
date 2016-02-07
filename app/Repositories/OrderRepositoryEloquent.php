@@ -7,28 +7,41 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Delivery\Repositories\OrderRepository;
 use Delivery\Models\Order;
 
-    /**
-    * Class OrderRepositoryEloquent
-    * @package namespace Delivery\Repositories;
-    */
-    class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
+/**
+* Class OrderRepositoryEloquent
+* @package namespace Delivery\Repositories;
+*/
+class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
+{
+
+    protected $skipPresenter = true;
+
+    public function getByIdAndDeliveryman($id,$idDeliveryman)
     {
-        public function getByIdAndDeliveryman($id,$idDeliveryman)
+        $result = $this->with(['orderitems','client','cupom'])->findWhere([
+            'id'=>$id,
+            'user_delivery_man_id'=> $idDeliveryman
+            ]);
+
+        if($result instanceof Collection)
         {
-            $result = $this->with(['orderitems','client','cupom'])->findWhere([
-                'id'=>$id,
-                'user_delivery_man_id'=> $idDeliveryman
-                ]);
-            if($result instanceof Collection)
-            {
-                $result = $result->frist();
-                $result->orderitems->each(function($item){
-                    $item->product;
-                });
-                return $result;
-            }
-            return $result->first();
+            $result = $result->frist();
         }
+        else
+        {
+            if(isset($result['data']) && count($result['data'])==1)
+            {
+                $result= [
+                'data'=>$result['data'][0]
+                ];
+            }
+            else
+            {
+                throw new \Illuminate\Database\Eloquent\ModelNotFoundException("Order não existe");
+            }
+        }
+        return $result;
+    }
 
     /**
     * Specify Model class name
@@ -46,5 +59,10 @@ use Delivery\Models\Order;
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return \Delivery\Presenters\OrderPresenter::class;
     }
 }

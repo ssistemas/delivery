@@ -40,9 +40,13 @@ class OrderService
 		try
 		{
 			$data['status'] = 0;
+			if(isset($data['cupom_id']))
+			{
+				unset($data['cupom_id']);
+			}
 			if(isset($data['cupom_code']))
 			{
-				$cupom = $this->cupomRepository->findByField('code',$data['cupom_code']);
+				$cupom = $this->cupomRepository->findByField('code',$data['cupom_code'])->first();
 				$data['cupom_id'] = $cupom->id;
 				$cupom->used = 1;
 				$cupom->save();
@@ -50,7 +54,7 @@ class OrderService
 			}
 			$items = $data['items'];
 			unset($data['items']);
-			$order =$this->OrderRepository->create($data);
+			$order = $this->orderRepository->create($data);
 			$total=0;
 			foreach ($items as $item)
 			{

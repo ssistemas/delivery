@@ -19,6 +19,11 @@ class CheckRole
         {
             return redirect()->route('auth.login');
         }
+
+        if(Auth::user()->role <> $role)
+        {
+            return redirect()->route('auth.login');
+        }
         return $next($request);
     }
 }

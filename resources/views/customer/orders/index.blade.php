@@ -22,7 +22,7 @@
 					<td>{{$order->total}}</td>
 					<td>{{$order->status}}</td>
 					<td>
-						<a href="{{ route('admin.orders.delete',$order->id) }}" class="btn btn-danger btn-sm">Cancelar</a>
+						{{--<a href="{{ route('customer.orders.delete',$order->id) }}" class="btn btn-danger btn-sm">Cancelar</a>--}}
 					</td>
 				</tr>
 				<tr>

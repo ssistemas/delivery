@@ -54,15 +54,6 @@ public function store(CheckoutRequest $request)
     $client = $this->userRepository->find(\Auth::user()->id)->client->id;
     $data['client_id']=$client;
     $this->orderService->create($data);
-        // $flag = $this->repository->create($request->all());
-        // if (is_null($flag))
-        // {
-        //     session()->flash('message-danger','Error ao gravar os dados.');
-        // }
-        // else
-        // {
-        //     session()->flash('message-success','Dados gravados com sucesso.');
-        // }
     return redirect()->route('customer.orders.index');
 }
 

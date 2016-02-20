@@ -36,6 +36,13 @@
 </head>
 <body>
     <div class="container">
+    <div class="media">
+        <a class="pull-left" href="#">
+        </a>
+        <div class="media-body">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/8C0yn0tMA3o" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
         <div class="content">
             <div class="title">System Delivery - Laravel 5
                 <p>admin@gmail.com</p>

@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(CupomTableSeeder::class);
         $this->call(OrderTableSeeder::class);
-
-        \DB::insert('INSERT INTO oauth_clients (id, secret, name, created_at, updated_at) VALUES(?,?,?,?,?)',['app001', 'secret', 'mobile', '2015-10-17 03:00:00', '2015-10-17 03:00:00']);
+        $this->call(OauthClientsTableSeeder::class);
 
         Model::reguard();
     }

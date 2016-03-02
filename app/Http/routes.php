@@ -112,7 +112,13 @@ Route::post('oauth/access_token', function() {
 	return Response::json(Authorizer::issueAccessToken());
 });
 
-Route::group(['prefix' => 'api','middleware'=>'oauth','as'=>'api.'], function () {
+ Route::group(['prefix' => 'api','middleware'=>'oauth','as'=>'api.'], function () {
+
+	// Route::group(['prefix' => 'authenticated ', 'as'=>'authenticated.'], function (){
+	// 	 Route::get('',['as'=>'user',function(){
+	// 	 	return Response::json(Authorizer::getResourceOwnerId());
+	// 	 }]);
+	// });
 
 	Route::group(['middleware'=>'oauth.checkrole:client','prefix' => 'client', 'as'=>'client.'], function (){
 		Route::resource('order',
